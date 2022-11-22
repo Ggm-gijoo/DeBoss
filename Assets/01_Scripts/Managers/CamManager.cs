@@ -56,8 +56,8 @@ public class CamManager : MonoBehaviour
                 mainCam.fieldOfView += scroll;
                 break;
         }
-    }
 
+    }
     public void RotateCamera()
     {
         mouseX = Input.GetAxis("Mouse X");

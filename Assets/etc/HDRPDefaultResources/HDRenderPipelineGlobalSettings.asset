@@ -60,7 +60,7 @@ MonoBehaviour:
     msaaMode: 1
     materialQuality: 0
   m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7, type: 2}
-  m_RenderPipelineRayTracingResources: {fileID: 11400000, guid: ba6e7f30e5cffc249a8bf7ee5756c196, type: 2}
+  m_RenderPipelineRayTracingResources: {fileID: 0}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
   afterPostProcessBlursCustomPostProcesses: []
@@ -87,6 +87,10 @@ MonoBehaviour:
   diffusionProfileSettingsList:
   - {fileID: 11400000, guid: a82fac47b27dcdd45b422b6310483540, type: 2}
   - {fileID: 11400000, guid: 3dffd4b6f2385cf41bb258220a34e2c9, type: 2}
+  - {fileID: 11400000, guid: 956d18fc18c3e7f48b2f0c05dbc139c9, type: 2}
+  - {fileID: 11400000, guid: 26bdddf49760c61438938733f07fa2a2, type: 2}
+  - {fileID: 11400000, guid: 21f1cc4c02be0254fb16733d2d7c4e84, type: 2}
+  - {fileID: 11400000, guid: abf62e897308f6c4e8067640056a7893, type: 2}
   rendererListCulling: 0
   DLSSProjectId: 000000
   useDLSSCustomProjectId: 0

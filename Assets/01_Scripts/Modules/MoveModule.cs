@@ -8,8 +8,8 @@ public class MoveModule : MonoBehaviour
     [Header("이동 속도")]
     [Range(3f, 25f)]
     [SerializeField] private float moveSpeed = 3f;
-    [Header("이동 가속도")]
-    [Range(0.1f, 1f)]
+    [Header("회전 가속도")]
+    [Range(0.01f, 10f)]
     [SerializeField] private float moveChangeSpd = 0.5f;
     [Header("회전 속도")]
     [Range(10f, 3600f)]
@@ -122,26 +122,7 @@ public class MoveModule : MonoBehaviour
 
     void vecDirectionChangeBody()
     {
-        if (getNowVelocityVal() <= float.Epsilon)
-            return;
-
-        transform.forward = Vector3.Lerp(transform.forward, moveDir, Time.deltaTime);
-    }
-
-    float getNowVelocityVal()
-    {
-        Vector3 vecNowVelocity = Vector3.zero;
-
-        if (rigid.velocity == Vector3.zero)
-        {
-            vecNowVelocity = Vector3.zero;
-        }
-        else
-        {
-            Vector3 retVelocity = rigid.velocity;
-            vecNowVelocity = Vector3.Lerp(vecNowVelocity, retVelocity, moveChangeSpd * Time.fixedDeltaTime);
-        }
-        return vecNowVelocity.magnitude;
+        transform.forward = Vector3.Lerp(transform.forward, moveDir, moveChangeSpd * Time.deltaTime);
     }
 
     public void Jump()
