@@ -13,7 +13,7 @@ public class WeaponSO : ScriptableObject
 
     [Header("무기 이름")]
     [SerializeField] private string weaponName = "";
-    [TextArea(5, 1)]
+    [TextArea(8, 1)]
     [Header("무기 설명")]
     [SerializeField] private string description = "";
     [Header("무기 종류")]

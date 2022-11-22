@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339ec525026847b49b6c74481e8f5907, type: 3}
+  m_Name: 00_DuelBlade_Light_Ber
+  m_EditorClassIdentifier: 
+  weaponId: 4
+  weaponModel: {fileID: 799187902748888823, guid: b6a685e3ac8366d40946e28a54a654f4, type: 3}
+  weaponName: "\uC30D\uAC80 \uBFE1\uBFE1\uC774/\uBF55\uBF55\uB828"
+  description: "\uBFE1\uBFE1\uBF55\uBF55\uC774\uB828\uC758 \uB098\uBA38\uC9C0 \uAC80
+    \uD558\uB098\uB97C \uAC1C\uC870\uD558\uC5EC \uB9CC\uB4E0 \uC30D\uAC80.\n\uACBD\uB7C9\uD654\uB418\uC5B4
+    \uAE30\uC874\uBCF4\uB2E4 \uD30C\uAD34\uB825\uC740 \uD604\uC800\uD788 \uB5A8\uC5B4\uC84C\uC73C\uB098,
+    \uB9E4\uC6B0 \uAC00\uBCBC\uC6CC\uC838 \uC30D\uAC80\uC758 \uD615\uD0DC\uB85C \uC4F8
+    \uC218 \uC788\uAC8C \uB418\uC5C8\uB2E4."
+  type: 1
+  pos: 3
+  speed: 1
+  dmg: 75
+  crit: 27
+  attackMoveCount: 3

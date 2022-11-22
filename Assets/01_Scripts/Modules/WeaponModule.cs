@@ -46,11 +46,10 @@ public class WeaponModule : MonoBehaviour
     {
         weapons.Clear();
 
-        for (int i = 0; i < Directory.GetFiles($"Assets/Resources/SO/Weapon").Length / 2; i++)
-        {
-            WeaponSO weapon = Resources.Load($"SO/Weapon/ID_{i}") as WeaponSO;
+        WeaponSO[] loadWeapon = Resources.LoadAll<WeaponSO>("SO/Weapon");
+
+        foreach (var weapon in loadWeapon)
             weapons.Add(weapon.WeaponId, weapon);
-        }
     }
 
     public void SetWeaponIdx(int idx) => nowWeaponIdx = idx;

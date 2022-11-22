@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339ec525026847b49b6c74481e8f5907, type: 3}
+  m_Name: 01_Sword_Ber
+  m_EditorClassIdentifier: 
+  weaponId: 3
+  weaponModel: {fileID: 5543645044625200474, guid: 441ced3823ec7514995b29836503ec24, type: 3}
+  weaponName: "\uBFE1\uBFE1\uBF55\uBF55\uC774\uB828\uC758 \uAC80"
+  description: "\uBFE1\uBFE1\uBF55\uBF55\uC774\uB828\uC774 \uC0AC\uC6A9\uD588\uB358
+    \uAC80.\n\uADF8 \uBB34\uAC8C\uB294 \uB0B4\uB9AC\uCE58\uBA74 \uC9C0\uBA74\uC774
+    \uBC15\uC0B4\uB0A0 \uC815\uB3C4\uC774\uB2E4.\n\uBCF8\uB514 \uC30D\uAC80\uC774\uC5C8\uC73C\uB098
+    \uB108\uBB34\uB098\uB3C4 \uBB34\uAC70\uC6B4 \uB098\uBA38\uC9C0 \uD55C \uBC88\uC5D0
+    \uD558\uB098\uB9CC \uC4F0\uAE30\uC5D0\uB3C4 \uBC85\uCC28\uB2E4."
+  type: 1
+  pos: 2
+  speed: 2
+  dmg: 275
+  crit: 35
+  attackMoveCount: 3
