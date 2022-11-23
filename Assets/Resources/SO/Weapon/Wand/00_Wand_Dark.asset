@@ -20,7 +20,7 @@ MonoBehaviour:
     \uC9F1\uC384\uC11C\uC2E0\uAE4C\uC9C01\uBC29\uCEF7\uC73C\uB85C\uC8FD\uC77C\uC218\uC787\uC744\uC815\uB3C4\uC774\uB2E4"
   type: 2
   pos: 1
-  speed: 1
+  speed: 0
   dmg: 5000000
   crit: 100
   attackMoveCount: 3
