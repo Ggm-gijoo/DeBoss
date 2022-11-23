@@ -51,7 +51,8 @@ public enum WeaponType
 {
     None,
     Sword,
-    Wand
+    Wand,
+    DuelBlade
 }
 public enum AttackType
 {
