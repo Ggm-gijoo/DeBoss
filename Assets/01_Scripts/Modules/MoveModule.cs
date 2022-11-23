@@ -122,7 +122,7 @@ public class MoveModule : MonoBehaviour
 
     void vecDirectionChangeBody()
     {
-        transform.forward = Vector3.Lerp(transform.forward.normalized, moveDir, moveChangeSpd * Time.deltaTime);
+        transform.forward = Vector3.Lerp(transform.forward, moveDir, moveChangeSpd * Time.deltaTime);
     }
 
     public void Jump()

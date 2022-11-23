@@ -1646,7 +1646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.1
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031191139912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   radius: 0.06
   height: 0.3
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031203488611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,7 +1870,7 @@ MonoBehaviour:
   radius: 0.05
   height: 0.45
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031222037960
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.078
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031417675741
 GameObject:
   m_ObjectHideFlags: 0
@@ -4048,7 +4048,7 @@ MonoBehaviour:
   radius: 0.028
   height: 0.03
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031604011404
 GameObject:
   m_ObjectHideFlags: 0
@@ -4096,7 +4096,7 @@ MonoBehaviour:
   radius: 0.13
   height: 0.18
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031623968871
 GameObject:
   m_ObjectHideFlags: 0
@@ -4604,7 +4604,7 @@ MonoBehaviour:
   radius: 0.11
   height: 0.09
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031716257273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4900,7 +4900,7 @@ MonoBehaviour:
   radius: 0.05
   height: 0.18
   linkedRenderer: {fileID: 0}
-  shouldDrawGizmosThisFrame: 0
+  shouldDrawGizmosThisFrame: 1
 --- !u!1 &301466031742968574
 GameObject:
   m_ObjectHideFlags: 0
@@ -5487,6 +5487,7 @@ GameObject:
   - component: {fileID: 4006908688283659996}
   - component: {fileID: 4006908688283659999}
   - component: {fileID: 4006908688283659998}
+  - component: {fileID: 8198188095381689178}
   - component: {fileID: 4006908688283659969}
   - component: {fileID: 4006908688283659968}
   m_Layer: 0
@@ -5743,6 +5744,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPos: {fileID: 4006908688283659971}
+--- !u!114 &8198188095381689178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301466031807903503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6309936606295024eb6df0a71766912c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 150
 --- !u!65 &4006908688283659969
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -36,9 +36,4 @@ public class MainModule : MonoBehaviour
     { 
 
     }
-
-    public void Damage()
-    {
-
-    }
 }
