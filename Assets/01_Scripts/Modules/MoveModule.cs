@@ -122,7 +122,11 @@ public class MoveModule : MonoBehaviour
 
     void vecDirectionChangeBody()
     {
-        transform.forward = Vector3.Lerp(transform.forward, moveDir, moveChangeSpd * Time.deltaTime);
+        if (moveDir == Vector3.zero) return;
+        Debug.Log(transform.forward);
+        Quaternion quaternion = Quaternion.LookRotation(moveDir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, moveChangeSpd * Time.deltaTime);
+        //transform.forward = Vector3.Slerp(transform.forward, moveDir, moveChangeSpd * Time.deltaTime);
     }
 
     public void Jump()
