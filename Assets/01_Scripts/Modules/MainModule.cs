@@ -31,9 +31,4 @@ public class MainModule : MonoBehaviour
             player = this;
         anim = GetComponent<Animator>();
     }
-
-    void Update()
-    { 
-
-    }
 }

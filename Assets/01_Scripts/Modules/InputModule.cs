@@ -18,8 +18,10 @@ public class InputModule : MonoBehaviour
 
     private void FixedUpdate() //이동
     {
-        if(!MainModule.player.isAct)
+        if (!MainModule.player.isAct)
+        {
             InputMove();
+        }
     }
     private void Update() //즉각 반응해야하는 행동
     {

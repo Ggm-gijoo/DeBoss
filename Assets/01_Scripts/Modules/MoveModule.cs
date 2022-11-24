@@ -71,7 +71,8 @@ public class MoveModule : MonoBehaviour
     }
 
     public void MoveTo(float h, float v)
-    { 
+    {   
+
         Vector3 forward = Camera.main.transform.localRotation * Vector3.forward;
         forward.y = 0.0f;
 
@@ -123,7 +124,6 @@ public class MoveModule : MonoBehaviour
     void vecDirectionChangeBody()
     {
         if (moveDir == Vector3.zero) return;
-        Debug.Log(transform.forward);
         Quaternion quaternion = Quaternion.LookRotation(moveDir);
         transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, moveChangeSpd * Time.deltaTime);
         //transform.forward = Vector3.Slerp(transform.forward, moveDir, moveChangeSpd * Time.deltaTime);
