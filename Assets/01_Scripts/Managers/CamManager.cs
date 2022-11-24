@@ -8,8 +8,6 @@ public class CamManager : MonoBehaviour
 
     [Header("카메라 거리")]
     [SerializeField] private Vector3 CameraDistance;
-    [Header("플레이어 위치")]
-    [SerializeField] private Transform playerTransform;
     [Header("카메라 줌인/줌아웃 감도")]
     [Range(1f, 20f)]
     [SerializeField] private float zoomSpeed = 10f;
@@ -24,19 +22,33 @@ public class CamManager : MonoBehaviour
     [Header("카메라 줌인 거리")]
     [SerializeField]private float nearDist = 50f;
 
+    private Transform playerTransform;
+    private Transform bossTransform;
+
     private float rotationX = 0.0f;
     private float mouseX = 0.0f;
 
-    private void Awake()
+    public bool isBossAppear = false;
+
+    private void Start()
     {
         mainCam = Camera.main;
+
+        if(MainModule.player != null)
+            playerTransform = MainModule.player.transform;
+        if(MainModule.boss != null)
+            bossTransform = MainModule.boss.transform;
+
         mainCam.transform.position = playerTransform.position + CameraDistance;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         ZoomCamera();
-        RotateCamera();
+        if (isBossAppear)
+            RotateCamera(bossTransform);
+        else
+            RotateCamera(playerTransform);
     }
 
 
@@ -58,7 +70,7 @@ public class CamManager : MonoBehaviour
         }
 
     }
-    public void RotateCamera()
+    public void RotateCamera(Transform targetTransform)
     {
         mouseX = Input.GetAxis("Mouse X");
 
@@ -66,9 +78,9 @@ public class CamManager : MonoBehaviour
         mainCam.transform.rotation = Quaternion.Euler(0, rotationX, 0);
 
         Vector3 reverseDistance = new Vector3(0.0f, CameraDistance.y, CameraDistance.z);
-        mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * reverseDistance;
+        mainCam.transform.position = targetTransform.position + mainCam.transform.rotation * reverseDistance;
 
-        mainCam.transform.LookAt(playerTransform);
+        mainCam.transform.LookAt(targetTransform);
     }
 
 

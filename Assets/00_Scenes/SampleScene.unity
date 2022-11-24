@@ -201,11 +201,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112199849}
   m_CullTransparentMesh: 1
---- !u!4 &244076399 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4006908688283659971, guid: 47ad3b51b90f55e45a5597597ad7c594, type: 3}
-  m_PrefabInstance: {fileID: 1935091559}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &305680900
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC874\uB098\uC388\n<size=150%>\uBFE1\uBF55\uBF55\uBF55\uC774\uB828"
+  m_text: "\uC874\uB098\uC388\n<size=150%>\uBFE1\uBFE1\uBF55\uBF55\uC774\uB828"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03724d97e8cbab64da63f5c33f17b9f8, type: 2}
   m_sharedMaterial: {fileID: -6787072339867096058, guid: 03724d97e8cbab64da63f5c33f17b9f8, type: 2}
@@ -545,13 +540,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580e72c221c34a448bf124e9101f21fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraDistance: {x: 0, y: 5.5, z: -11.5}
-  playerTransform: {fileID: 244076399}
+  CameraDistance: {x: 0, y: 2.5, z: -11.5}
   zoomSpeed: 15
   rotateSpeed: 1
   nearestDist: 30
   farestDist: 60
   nearDist: 45
+  isBossAppear: 0
 --- !u!4 &697139475
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.65, g: 0.9764045, b: 1, a: 1}
+  m_Color: {r: 0.7458882, g: 0.9036872, b: 0.9150943, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1354,7 +1349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5416874, g: 0.71150887, b: 0.9056604, a: 0.85882354}
+  m_Color: {r: 0.78969383, g: 0.8389508, b: 0.8962264, a: 0.85882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1674,7 +1669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5968672, g: 0.75914454, b: 0.9528302, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1765,7 +1760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.59097546, g: 0.82812154, b: 0.8773585, a: 1}
+  m_Color: {r: 0.6977216, g: 0.8531223, b: 0.8867924, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2165,7 +2160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1914609543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2257,6 +2252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+  isBoss: 1
   isAct: 0
   anim: {fileID: 0}
 --- !u!114 &1914609548
@@ -3189,7 +3185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4006908688283659994, guid: 47ad3b51b90f55e45a5597597ad7c594, type: 3}
       propertyPath: fallMultiplier
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ad3b51b90f55e45a5597597ad7c594, type: 3}

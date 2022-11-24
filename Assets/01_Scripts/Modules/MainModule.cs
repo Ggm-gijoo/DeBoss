@@ -16,9 +16,11 @@ public enum AnimState
 public class MainModule : MonoBehaviour
 {
     public static MainModule player;
+    public static MainModule boss;
 
     public bool isPlayer = false;
-    public bool isAct = false;
+    public bool isBoss = false;
+    [HideInInspector] public bool isAct = false;
 
     public Animator anim;
     private AnimState animstate = AnimState.Idle;
@@ -29,6 +31,8 @@ public class MainModule : MonoBehaviour
     {
         if (isPlayer)
             player = this;
+        if (isBoss)
+            boss = this;
         anim = GetComponent<Animator>();
     }
 }
