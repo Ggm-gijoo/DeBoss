@@ -25,6 +25,8 @@ public class CamManager : MonoBehaviour
     private Transform playerTransform;
     private Transform bossTransform;
 
+    private GameObject targetTransformGameObj;
+
     private float rotationX = 0.0f;
     private float mouseX = 0.0f;
 
@@ -38,6 +40,8 @@ public class CamManager : MonoBehaviour
             playerTransform = MainModule.player.transform;
         if(MainModule.boss != null)
             bossTransform = MainModule.boss.transform;
+
+        targetTransformGameObj = new GameObject();
 
         mainCam.transform.position = playerTransform.position + CameraDistance;
     }
@@ -74,13 +78,16 @@ public class CamManager : MonoBehaviour
     {
         mouseX = Input.GetAxis("Mouse X");
 
+        Transform test = targetTransformGameObj.transform;
+        test.position = (targetTransform.position + playerTransform.position) / 2.0f;
+
         rotationX += mouseX * rotateSpeed;
         mainCam.transform.rotation = Quaternion.Euler(0, rotationX, 0);
 
         Vector3 reverseDistance = new Vector3(0.0f, CameraDistance.y, CameraDistance.z);
-        mainCam.transform.position = targetTransform.position + mainCam.transform.rotation * reverseDistance;
+        mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * reverseDistance;
 
-        mainCam.transform.LookAt(targetTransform);
+        mainCam.transform.LookAt(test);
     }
 
 
