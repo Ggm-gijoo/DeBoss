@@ -84,7 +84,7 @@ public class CamManager : MonoBehaviour
         rotationX += mouseX * rotateSpeed;
         mainCam.transform.rotation = Quaternion.Euler(0, rotationX, 0);
 
-        Vector3 reverseDistance = new Vector3(0.0f, CameraDistance.y, CameraDistance.z);
+        Vector3 reverseDistance = new Vector3(CameraDistance.x, CameraDistance.y, CameraDistance.z);
         mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * reverseDistance;
 
         mainCam.transform.LookAt(test);
