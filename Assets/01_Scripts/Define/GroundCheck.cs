@@ -7,7 +7,7 @@ public class GroundCheck : MonoBehaviour
     [SerializeField] private Transform characterPos;
     public bool IsGrounded()
     {
-        RaycastHit[] raycastHits = Physics.SphereCastAll(characterPos.position, 0.05f, Vector3.down * 0.1f, 0f);
+        RaycastHit[] raycastHits = Physics.SphereCastAll(characterPos.position, 0.01f, Vector3.down * 0.1f, 0f);
         foreach(var ray in raycastHits)
         {
             if(ray.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))

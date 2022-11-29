@@ -50,9 +50,9 @@ public class CamManager : MonoBehaviour
     {
         ZoomCamera();
         if (isBossAppear)
-            RotateCamera(bossTransform);
+            BossCamera();
         else
-            RotateCamera(playerTransform);
+            RotateCamera();
     }
 
 
@@ -74,22 +74,27 @@ public class CamManager : MonoBehaviour
         }
 
     }
-    public void RotateCamera(Transform targetTransform)
+    public void RotateCamera()
     {
         mouseX = Input.GetAxis("Mouse X");
-
-        Transform test = targetTransformGameObj.transform;
-        test.position = (targetTransform.position + playerTransform.position) / 2.0f;
 
         rotationX += mouseX * rotateSpeed;
         mainCam.transform.rotation = Quaternion.Euler(0, rotationX, 0);
 
-        Vector3 reverseDistance = new Vector3(CameraDistance.x, CameraDistance.y, CameraDistance.z);
-        mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * reverseDistance;
 
-        mainCam.transform.LookAt(test);
+        mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * CameraDistance;
+        mainCam.transform.LookAt(playerTransform);
     }
 
+    public void BossCamera()
+    {
+        Transform test = targetTransformGameObj.transform;
+        test.position = (bossTransform.position + playerTransform.position) / 2.0f;
+
+        mainCam.transform.forward = Vector3.Slerp(mainCam.transform.forward,bossTransform.position - playerTransform.position,Time.deltaTime);
+        mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * CameraDistance;
+        mainCam.transform.LookAt(test);
+    }
 
 
 }

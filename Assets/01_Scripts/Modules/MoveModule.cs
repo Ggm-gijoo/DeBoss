@@ -58,6 +58,7 @@ public class MoveModule : MonoBehaviour
                 mainModule.anim.SetTrigger(_trigger);
 
                 mainModule.TriggerValue = AnimState.Idle;
+
             }
             else if(!groundCheck.IsGrounded() && jumpCount == 0)
             {
@@ -116,7 +117,7 @@ public class MoveModule : MonoBehaviour
             mainModule.anim.SetTrigger(_trigger, () =>
             {
                 mainModule.isAct = false;
-            }, 0.8f);
+            }, 0.6f);
         }
 
     }
@@ -126,7 +127,6 @@ public class MoveModule : MonoBehaviour
         if (moveDir == Vector3.zero) return;
         Quaternion quaternion = Quaternion.LookRotation(moveDir);
         transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, moveChangeSpd * Time.deltaTime);
-        //transform.forward = Vector3.Slerp(transform.forward, moveDir, moveChangeSpd * Time.deltaTime);
     }
 
     public void Jump()
