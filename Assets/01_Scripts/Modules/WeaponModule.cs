@@ -13,6 +13,7 @@ public enum WeaponPos
 public class WeaponModule : MonoBehaviour
 {
     private static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
+    private List<Transform> retMeshObjs = new List<Transform>();
 
     [SerializeField] private Transform[] weaponTransform;
 
@@ -25,6 +26,7 @@ public class WeaponModule : MonoBehaviour
 
     private readonly int _weapon = Animator.StringToHash("Weapon");
     private readonly int _trigger = Animator.StringToHash("Trigger");
+    private readonly int _weaponChange = Animator.StringToHash("WeaponChange");
 
     private void Awake()
     {
@@ -50,6 +52,18 @@ public class WeaponModule : MonoBehaviour
         foreach (var weapon in loadWeapon)
             weapons.Add(weapon.WeaponId, weapon);
     }
+    //private void SetPool()
+    //{
+    //    retMeshObjs.Clear();
+    //    for(int i = 0; i < weapons.Count; i++)
+    //    {
+    //        if (weapons[i].WeaponPrefab == null) continue;
+
+    //        SetMeshItem(weapons[i].WeaponPrefab);
+    //        retMeshObjs[i].gameObject.SetActive(false);
+
+    //    }
+    //}
 
     public void SetWeaponIdx(int idx) => nowWeaponIdx = idx;
 
@@ -59,14 +73,15 @@ public class WeaponModule : MonoBehaviour
         WeaponSwitch();
     }
     public void WeaponSwitch()
-    { 
-        if (nowWeapon.WeaponPrefab != null)
+    {
+        if(nowWeapon.WeaponPrefab != null)
         {
             SetMeshItem(nowWeapon.WeaponPrefab);
         }
         mainModule.TriggerValue = AnimState.Idle;
         mainModule.anim.SetInteger(_weapon, (int)nowWeapon.Type);
         mainModule.anim.SetTrigger(_trigger);
+        mainModule.anim.SetTrigger(_weaponChange);
     }
 
     public Transform[] SetMeshItem(GameObject meshObj)
@@ -78,7 +93,6 @@ public class WeaponModule : MonoBehaviour
 
     private Transform[] SetMeshObj(Weapon[] weapons)
     {
-        List<Transform> retMeshObjs = new List<Transform>();
         Transform parentBone = null;
         int index = 1;
 
