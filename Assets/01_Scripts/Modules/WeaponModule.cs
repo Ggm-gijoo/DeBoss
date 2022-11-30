@@ -22,7 +22,6 @@ public class WeaponModule : MonoBehaviour
     public int nowWeaponIdx = 0;
 
     private MainModule mainModule;
-    private GameObject clone;
 
     private readonly int _weapon = Animator.StringToHash("Weapon");
     private readonly int _trigger = Animator.StringToHash("Trigger");
@@ -60,26 +59,51 @@ public class WeaponModule : MonoBehaviour
         WeaponSwitch();
     }
     public void WeaponSwitch()
-    {
-        DisarmedWeapon();
+    { 
         if (nowWeapon.WeaponPrefab != null)
         {
-            clone = Instantiate(nowWeapon.WeaponPrefab);
-            if (nowWeapon.Pos != WeaponPos.None)
-            {
-                clone.transform.SetParent(weaponTransform[(int)nowWeapon.Pos]);
-                clone.transform.localPosition = Vector3.zero;
-                clone.transform.localRotation = Quaternion.Euler(0, 180 * (int)nowWeapon.Pos, 0);
-            }
+            SetMeshItem(nowWeapon.WeaponPrefab);
         }
         mainModule.TriggerValue = AnimState.Idle;
         mainModule.anim.SetInteger(_weapon, (int)nowWeapon.Type);
         mainModule.anim.SetTrigger(_trigger);
     }
 
-    public void DisarmedWeapon()
+    public Transform[] SetMeshItem(GameObject meshObj)
     {
-        Destroy(clone);
+        Transform[] retMeshItems = SetMeshObj(meshObj.GetComponentsInChildren<Weapon>());
+
+        return retMeshItems;
     }
+
+    private Transform[] SetMeshObj(Weapon[] weapons)
+    {
+        List<Transform> retMeshObjs = new List<Transform>();
+        Transform parentBone = null;
+        int index = 1;
+
+        foreach (var weapon in weapons)
+        {
+            if (nowWeapon.Pos == WeaponPos.None) continue;
+            else if (nowWeapon.Pos == WeaponPos.AllHand)
+            {
+                GameObject itemObj = GameObject.Instantiate(weapon.gameObject, weaponTransform[index++]);
+                itemObj.transform.localRotation = Quaternion.Euler(Vector3.right * index * 180);
+                retMeshObjs.Add(itemObj.transform);
+            }
+            else
+            {
+                parentBone = weaponTransform[(int)nowWeapon.Pos];
+                GameObject itemObj = GameObject.Instantiate(weapon.gameObject, parentBone);
+                itemObj.transform.localRotation = Quaternion.Euler(Vector3.right * (int)nowWeapon.Pos * 180);
+                retMeshObjs.Add(itemObj.transform);
+            }
+
+                
+        }
+
+        return retMeshObjs.ToArray();
+    }
+
 
 }

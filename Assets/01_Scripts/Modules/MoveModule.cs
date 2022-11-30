@@ -112,12 +112,13 @@ public class MoveModule : MonoBehaviour
             rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
 
+            mainModule.anim.SetBool(_moving, false);
             mainModule.TriggerValue = AnimState.Dodge;
 
             mainModule.anim.SetTrigger(_trigger, () =>
             {
                 mainModule.isAct = false;
-            }, 0.6f);
+            }, 0.4f);
         }
 
     }
