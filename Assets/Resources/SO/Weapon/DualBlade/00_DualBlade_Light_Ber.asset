@@ -25,4 +25,4 @@ MonoBehaviour:
   speed: 1
   dmg: 75
   crit: 27
-  attackMoveCount: 3
+  attackMoveCount: 4

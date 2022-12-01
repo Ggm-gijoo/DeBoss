@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyDefault : MonoBehaviour
 {
+    public EnemySO enemySO;
     public abstract void Attack();
     public virtual void Skill1() { }
     public virtual void Skill2() { }

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AttackModule : MonoBehaviour
 {
-    private float[] attackDelay = {0.75f, 1f, 1.5f};
+    private float endDelay = 2f;
     private NavMeshAgent agent;
     private WeaponModule weaponModule;
     private Coroutine attackCoroutine;
@@ -63,12 +63,21 @@ public class AttackModule : MonoBehaviour
         flag = true;
         while (flag)
         {
+            mainModule.isAct = true;
             attackMove = attackMove % weaponModule.nowWeapon.AtkMoveCount + 1;
 
             mainModule.anim.SetInteger(_attack, attackMove);
             mainModule.anim.SetTrigger(_trigger);
 
-            yield return new WaitForSeconds(attackDelay[(int)weaponModule.nowWeapon.Speed]);
+            yield return null;
+            Debug.Log(mainModule.anim.GetCurrentAnimatorStateInfo(0).fullPathHash);
+            Debug.Log(mainModule.anim.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSecondsRealtime(mainModule.anim.GetCurrentAnimatorStateInfo(0).length);
+            if (attackMove == weaponModule.nowWeapon.AtkMoveCount)
+            {
+                mainModule.isAct = false;
+                yield return new WaitForSeconds(endDelay);
+            }
         }
         mainModule.isAct = false;
         attackCoroutine = null;

@@ -17,14 +17,12 @@ public class WeaponSO : ScriptableObject
     [Header("무기 설명")]
     [SerializeField] private string description = "";
     [Header("무기 종류")]
-    [SerializeField] WeaponType type = WeaponType.None;
+    [SerializeField] WeaponType type = WeaponType.Knuckle;
     [Header("장착 위치")]
     [SerializeField] WeaponPos pos = WeaponPos.None;
 
     [Space]
 
-    [Header("공격 속도")]
-    [SerializeField] private AttackType speed = AttackType.Middle;
     [Header("공격 대미지")]
     [SerializeField] private float dmg = 5f;
     [Header("크리티컬 확률")]
@@ -40,7 +38,6 @@ public class WeaponSO : ScriptableObject
     public string Description => description;
     public WeaponType Type => type;
     public WeaponPos Pos => pos;
-    public AttackType Speed => speed;
     public float Dmg => dmg;
     public float Crit => crit;
     public int AtkMoveCount => attackMoveCount;
@@ -49,14 +46,10 @@ public class WeaponSO : ScriptableObject
 }
 public enum WeaponType
 {
-    None,
+    Knuckle,
     Sword,
     Wand,
-    DualBlade
-}
-public enum AttackType
-{
-    Light,
-    Middle,
-    Heavy,
+    DualBlade,
+    GreatSword,
+    Spear
 }

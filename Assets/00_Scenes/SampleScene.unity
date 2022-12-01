@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC874\uB098\uC388\n<size=150%>\uBFE1\uBFE1\uBF55\uBF55\uC774\uB828"
+  m_text: "\uC874\uB098\uC388\n<size=180%>\uBFE1\uBFE1\uBF55\uBF55\uC774\uB828"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03724d97e8cbab64da63f5c33f17b9f8, type: 2}
   m_sharedMaterial: {fileID: -6787072339867096058, guid: 03724d97e8cbab64da63f5c33f17b9f8, type: 2}
@@ -363,8 +363,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.56
-  m_fontSizeBase: 31.56
+  m_fontSize: 29.55
+  m_fontSizeBase: 29.55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -599,6 +599,7 @@ GameObject:
   - component: {fileID: 697139474}
   - component: {fileID: 697139476}
   - component: {fileID: 697139477}
+  - component: {fileID: 697139478}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -667,6 +668,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textDialogue: {fileID: 1754811462}
+--- !u!114 &697139478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697139473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7cae396ba2a9042b4fc588120aa1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossNameText: {fileID: 305680902}
+  bossHPBar: {fileID: 1275301563}
+  bossUICanvas: {fileID: 1364518288}
 --- !u!1 &704908357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1569,7 @@ GameObject:
   - component: {fileID: 1364518286}
   - component: {fileID: 1364518285}
   - component: {fileID: 1364518284}
+  - component: {fileID: 1364518288}
   m_Layer: 5
   m_Name: BossUICanvas
   m_TagString: Untagged
@@ -1645,6 +1662,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1364518288
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364518283}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1454411946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2380,6 +2409,7 @@ GameObject:
   - component: {fileID: 1914609549}
   - component: {fileID: 1914609548}
   - component: {fileID: 1914609551}
+  - component: {fileID: 1914609552}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2546,6 +2576,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ba61414a7ce9c43aabfe5ccc959e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1914609552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914609542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a105da0d0a82a24fae8c5fcb55decd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 59a145e174f610540849093f6fd1f2bc, type: 2}
 --- !u!1 &1934522052
 GameObject:
   m_ObjectHideFlags: 0
