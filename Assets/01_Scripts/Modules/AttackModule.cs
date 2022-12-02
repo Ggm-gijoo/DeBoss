@@ -70,9 +70,7 @@ public class AttackModule : MonoBehaviour
             mainModule.anim.SetTrigger(_trigger);
 
             yield return null;
-            Debug.Log(mainModule.anim.GetCurrentAnimatorStateInfo(0).fullPathHash);
-            Debug.Log(mainModule.anim.GetCurrentAnimatorStateInfo(0).length);
-            yield return new WaitForSecondsRealtime(mainModule.anim.GetCurrentAnimatorStateInfo(0).length / 2);
+            yield return new WaitForSecondsRealtime(mainModule.anim.GetCurrentAnimatorStateInfo(0).length);
             if (attackMove == weaponModule.nowWeapon.AtkMoveCount)
             {
                 mainModule.isAct = false;

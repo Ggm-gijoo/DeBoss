@@ -78,7 +78,8 @@ public class WeaponModule : MonoBehaviour
         {
             SetMeshItem(nowWeapon.WeaponPrefab);
         }
-        mainModule.TriggerValue = AnimState.Idle;
+        if(mainModule.anim.GetInteger("Jumping") == 0)
+            mainModule.TriggerValue = AnimState.Idle;
         mainModule.anim.SetInteger(_weapon, (int)nowWeapon.Type);
         mainModule.anim.SetTrigger(_trigger);
         mainModule.anim.SetTrigger(_weaponChange);
