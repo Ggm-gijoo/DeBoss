@@ -41,6 +41,8 @@ public class CamManager : MonoBehaviour
         if(MainModule.boss != null)
             bossTransform = MainModule.boss.transform;
 
+        isBossAppear = MainModule.boss != null;
+
         targetTransformGameObj = new GameObject();
 
         mainCam.transform.position = playerTransform.position + CameraDistance;
