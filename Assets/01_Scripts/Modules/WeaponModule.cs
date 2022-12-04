@@ -80,6 +80,9 @@ public class WeaponModule : MonoBehaviour
         }
         if(mainModule.anim.GetInteger("Jumping") == 0)
             mainModule.TriggerValue = AnimState.Idle;
+        
+        mainModule.attackMove = 0;
+
         mainModule.anim.SetInteger(_weapon, (int)nowWeapon.Type);
         mainModule.anim.SetTrigger(_trigger);
         mainModule.anim.SetTrigger(_weaponChange);

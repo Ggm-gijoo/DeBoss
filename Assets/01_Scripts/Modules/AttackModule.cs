@@ -15,7 +15,6 @@ public class AttackModule : MonoBehaviour
     private readonly int _trigger = Animator.StringToHash("Trigger");
     private readonly int _skill = Animator.StringToHash("Skill");
 
-    private int attackMove = 0;
     private bool flag = false;
 
     private void Awake()
@@ -64,14 +63,14 @@ public class AttackModule : MonoBehaviour
         while (flag)
         {
             mainModule.isAct = true;
-            attackMove = attackMove % weaponModule.nowWeapon.AtkMoveCount + 1;
+            mainModule.attackMove = mainModule.attackMove % weaponModule.nowWeapon.AtkMoveCount + 1;
 
-            mainModule.anim.SetInteger(_attack, attackMove);
+            mainModule.anim.SetInteger(_attack, mainModule.attackMove);
             mainModule.anim.SetTrigger(_trigger);
 
             yield return null;
             yield return new WaitForSecondsRealtime(mainModule.anim.GetCurrentAnimatorStateInfo(0).length);
-            if (attackMove == weaponModule.nowWeapon.AtkMoveCount)
+            if (mainModule.attackMove == weaponModule.nowWeapon.AtkMoveCount)
             {
                 mainModule.isAct = false;
                 yield return new WaitForSeconds(endDelay);

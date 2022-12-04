@@ -27,6 +27,8 @@ public class MainModule : MonoBehaviour
     public AnimState TriggerValue { set { animstate = value; anim.SetInteger(_triggerNum, (int)animstate); } get { return animstate; } }
     private readonly int _triggerNum = Animator.StringToHash("TriggerNumber");
 
+    public int attackMove = 0;
+
     void Awake()
     {
         if (isPlayer)
