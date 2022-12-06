@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
 [CreateAssetMenu(fileName = "WeaponStatus",menuName ="Scriptables")]
 public class WeaponSO : ScriptableObject
@@ -30,6 +31,8 @@ public class WeaponSO : ScriptableObject
     [SerializeField] private float crit = 8f;
     [Header("공격 애니메이션 개수")]
     [SerializeField] private int attackMoveCount = 3;
+    [Header("공격 이펙트")]
+    [SerializeField] private VisualEffectAsset[] vfxs;
 
 
     public int WeaponId => weaponId;
@@ -41,6 +44,7 @@ public class WeaponSO : ScriptableObject
     public float Dmg => dmg;
     public float Crit => crit;
     public int AtkMoveCount => attackMoveCount;
+    public VisualEffectAsset[] Vfxs => vfxs;
 
 
 }

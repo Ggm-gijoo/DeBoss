@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public enum WeaponPos
 {
@@ -14,6 +15,7 @@ public class WeaponModule : MonoBehaviour
 {
     private static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
     private List<Transform> retMeshObjs = new List<Transform>();
+    private VisualEffectAsset[][] weaponVfx = new VisualEffectAsset[100][];
 
     [SerializeField] private Transform[] weaponTransform;
 
