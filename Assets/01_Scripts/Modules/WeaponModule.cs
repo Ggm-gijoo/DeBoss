@@ -14,6 +14,8 @@ public enum WeaponPos
 public class WeaponModule : MonoBehaviour
 {
     private static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
+    private static Dictionary<int, GameObject> parentsDict = new Dictionary<int, GameObject>();
+    
     private List<Transform> retMeshObjs = new List<Transform>();
     private VisualEffectAsset[][] weaponVfx = new VisualEffectAsset[100][];
 
@@ -33,8 +35,11 @@ public class WeaponModule : MonoBehaviour
     private void Awake()
     {
         mainModule = GetComponent<MainModule>();
-
         Init();
+    }
+    private void Start()
+    {
+        SetPool();
         SetNowWeapon();
     }
     private void Update()
@@ -54,18 +59,24 @@ public class WeaponModule : MonoBehaviour
         foreach (var weapon in loadWeapon)
             weapons.Add(weapon.WeaponId, weapon);
     }
-    //private void SetPool()
-    //{
-    //    retMeshObjs.Clear();
-    //    for(int i = 0; i < weapons.Count; i++)
-    //    {
-    //        if (weapons[i].WeaponPrefab == null) continue;
+    private void SetPool()
+    {
+        parentsDict.Clear();
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            if (weapons[i].WeaponPrefab == null) continue;
 
-    //        SetMeshItem(weapons[i].WeaponPrefab);
-    //        retMeshObjs[i].gameObject.SetActive(false);
+            SetMeshObj(weapons[i]);
+            parentsDict.Add(weapons[i].WeaponId, weapons[i].WeaponPrefab);
+            parentsDict[weapons[i].WeaponId].SetActive(false);
 
-    //    }
-    //}
+        }
+    }
+
+    public void GetPool()
+    {
+
+    }
 
     public void SetWeaponIdx(int idx) => nowWeaponIdx = idx;
 
@@ -78,7 +89,8 @@ public class WeaponModule : MonoBehaviour
     {
         if(nowWeapon.WeaponPrefab != null)
         {
-            SetMeshItem(nowWeapon.WeaponPrefab);
+            //SetMeshItem(nowWeapon.WeaponPrefab);
+            parentsDict[nowWeapon.WeaponId].SetActive(true);
         }
         if(mainModule.anim.GetInteger("Jumping") == 0)
             mainModule.TriggerValue = AnimState.Idle;
@@ -90,35 +102,32 @@ public class WeaponModule : MonoBehaviour
         mainModule.anim.SetTrigger(_weaponChange);
     }
 
-    public Transform[] SetMeshItem(GameObject meshObj)
-    {
-        Transform[] retMeshItems = SetMeshObj(meshObj.GetComponentsInChildren<Weapon>());
-
-        return retMeshItems;
-    }
-
-    private Transform[] SetMeshObj(Weapon[] weapons)
+    private Transform[] SetMeshObj(WeaponSO weaponSO)
     {
         Transform parentBone = null;
+
+        GameObject meshObj = weaponSO.WeaponPrefab;
+        Weapon[] weapons = meshObj.GetComponentsInChildren<Weapon>();
+
         int index = 1;
 
         foreach (var weapon in weapons)
         {
-            if (nowWeapon.Pos == WeaponPos.None) continue;
-            else if (nowWeapon.Pos == WeaponPos.AllHand)
+            if (weaponSO.Pos == WeaponPos.None) continue;
+
+            else if (weaponSO.Pos == WeaponPos.AllHand)
             {
-                GameObject itemObj = GameObject.Instantiate(weapon.gameObject, weaponTransform[index++]);
+                GameObject itemObj = Instantiate(weapon.gameObject, weaponTransform[index++]);
                 itemObj.transform.localRotation = Quaternion.Euler(Vector3.right * index * 180);
                 retMeshObjs.Add(itemObj.transform);
             }
             else
             {
-                parentBone = weaponTransform[(int)nowWeapon.Pos];
-                GameObject itemObj = GameObject.Instantiate(weapon.gameObject, parentBone);
-                itemObj.transform.localRotation = Quaternion.Euler(Vector3.right * (int)nowWeapon.Pos * 180);
+                parentBone = weaponTransform[(int)weaponSO.Pos];
+                GameObject itemObj = Instantiate(weapon.gameObject, parentBone);
+                itemObj.transform.localRotation = Quaternion.Euler(Vector3.right * (int)weaponSO.Pos * 180);
                 retMeshObjs.Add(itemObj.transform);
             }
-
                 
         }
 
