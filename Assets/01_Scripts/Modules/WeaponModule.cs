@@ -36,12 +36,11 @@ public class WeaponModule : MonoBehaviour
     {
         mainModule = GetComponent<MainModule>();
         Init();
-    }
-    private void Start()
-    {
         SetPool();
         SetNowWeapon();
     }
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -75,7 +74,13 @@ public class WeaponModule : MonoBehaviour
 
     public void GetPool()
     {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            if (weapons[i].WeaponPrefab == null) continue;
 
+            parentsDict[weapons[i].WeaponId].SetActive(false);
+        }
+        parentsDict[nowWeapon.WeaponId].SetActive(true);
     }
 
     public void SetWeaponIdx(int idx) => nowWeaponIdx = idx;
@@ -90,7 +95,7 @@ public class WeaponModule : MonoBehaviour
         if(nowWeapon.WeaponPrefab != null)
         {
             //SetMeshItem(nowWeapon.WeaponPrefab);
-            parentsDict[nowWeapon.WeaponId].SetActive(true);
+            GetPool();
         }
         if(mainModule.anim.GetInteger("Jumping") == 0)
             mainModule.TriggerValue = AnimState.Idle;
