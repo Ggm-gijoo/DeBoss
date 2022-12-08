@@ -14367,7 +14367,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":-968276732803099167,"guid":"8f6868e7756b45d41838c41a30aa4c69","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":-968276732803099167,"guid":"db59774384f6d864d9f36e1169fce1e2","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh
@@ -14571,7 +14571,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1.01
+      m_SerializableObject: 1.49
     m_Space: 2147483647
   m_Property:
     name: blurScale
@@ -14652,7 +14652,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1.4
+      m_SerializableObject: 1.54
     m_Space: 2147483647
   m_Property:
     name: Size
