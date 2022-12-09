@@ -14,9 +14,8 @@ public enum WeaponPos
 public class WeaponModule : MonoBehaviour
 {
     private static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
-    private static Dictionary<int, GameObject> parentsDict = new Dictionary<int, GameObject>();
-    
-    private List<Transform> retMeshObjs = new List<Transform>();
+    private static Dictionary<int, List<GameObject>> parentsDict = new Dictionary<int, List<GameObject>>();
+
     private VisualEffectAsset[][] weaponVfx = new VisualEffectAsset[100][];
 
     [SerializeField] private Transform[] weaponTransform;
@@ -66,8 +65,9 @@ public class WeaponModule : MonoBehaviour
             if (weapons[i].WeaponPrefab == null) continue;
 
             SetMeshObj(weapons[i]);
-            parentsDict.Add(weapons[i].WeaponId, weapons[i].WeaponPrefab);
-            parentsDict[weapons[i].WeaponId].SetActive(false);
+            //parentsDict.Add(weapons[i].WeaponId, weapons[i].WeaponPrefab);
+            for (int j = 0; j < parentsDict[weapons[i].WeaponId].Count; j++)
+                parentsDict[weapons[i].WeaponId][j].SetActive(false);
 
         }
     }
@@ -78,9 +78,11 @@ public class WeaponModule : MonoBehaviour
         {
             if (weapons[i].WeaponPrefab == null) continue;
 
-            parentsDict[weapons[i].WeaponId].SetActive(false);
+            for(int j = 0; j < parentsDict[weapons[i].WeaponId].Count; j++)
+                parentsDict[weapons[i].WeaponId][j].SetActive(false);
         }
-        parentsDict[nowWeapon.WeaponId].SetActive(true);
+        for (int j = 0; j < parentsDict[nowWeapon.WeaponId].Count; j++)
+            parentsDict[nowWeapon.WeaponId][j].SetActive(true);
     }
 
     public void SetWeaponIdx(int idx) => nowWeaponIdx = idx;
@@ -107,12 +109,14 @@ public class WeaponModule : MonoBehaviour
         mainModule.anim.SetTrigger(_weaponChange);
     }
 
-    private Transform[] SetMeshObj(WeaponSO weaponSO)
+    private void SetMeshObj(WeaponSO weaponSO)
     {
         Transform parentBone = null;
 
         GameObject meshObj = weaponSO.WeaponPrefab;
         Weapon[] weapons = meshObj.GetComponentsInChildren<Weapon>();
+
+        List<GameObject> retMeshObjs = new List<GameObject>();
 
         int index = 1;
 
@@ -120,23 +124,24 @@ public class WeaponModule : MonoBehaviour
         {
             if (weaponSO.Pos == WeaponPos.None) continue;
 
-            else if (weaponSO.Pos == WeaponPos.AllHand)
+            GameObject itemObj;
+
+            if (weaponSO.Pos == WeaponPos.AllHand)
             {
-                GameObject itemObj = Instantiate(weapon.gameObject, weaponTransform[index++]);
+                itemObj = Instantiate(weapon.gameObject, weaponTransform[index++]);
                 itemObj.transform.localRotation = Quaternion.Euler(Vector3.right * index * 180);
-                retMeshObjs.Add(itemObj.transform);
+                retMeshObjs.Add(itemObj);
             }
             else
             {
                 parentBone = weaponTransform[(int)weaponSO.Pos];
-                GameObject itemObj = Instantiate(weapon.gameObject, parentBone);
+                itemObj = Instantiate(weapon.gameObject, parentBone);
                 itemObj.transform.localRotation = Quaternion.Euler(Vector3.right * (int)weaponSO.Pos * 180);
-                retMeshObjs.Add(itemObj.transform);
+                retMeshObjs.Add(itemObj);
             }
-                
-        }
 
-        return retMeshObjs.ToArray();
+        }
+        parentsDict.Add(weaponSO.WeaponId, retMeshObjs);
     }
 
 
