@@ -65,7 +65,6 @@ public class WeaponModule : MonoBehaviour
             if (weapons[i].WeaponPrefab == null) continue;
 
             SetMeshObj(weapons[i]);
-            //parentsDict.Add(weapons[i].WeaponId, weapons[i].WeaponPrefab);
             for (int j = 0; j < parentsDict[weapons[i].WeaponId].Count; j++)
                 parentsDict[weapons[i].WeaponId][j].SetActive(false);
 
@@ -82,7 +81,9 @@ public class WeaponModule : MonoBehaviour
                 parentsDict[weapons[i].WeaponId][j].SetActive(false);
         }
         for (int j = 0; j < parentsDict[nowWeapon.WeaponId].Count; j++)
+        {
             parentsDict[nowWeapon.WeaponId][j].SetActive(true);
+        }
     }
 
     public void SetWeaponIdx(int idx) => nowWeaponIdx = idx;
@@ -94,11 +95,21 @@ public class WeaponModule : MonoBehaviour
     }
     public void WeaponSwitch()
     {
-        if(nowWeapon.WeaponPrefab != null)
+        if (nowWeapon.WeaponPrefab != null)
         {
-            //SetMeshItem(nowWeapon.WeaponPrefab);
             GetPool();
         }
+        else
+        {
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                if (weapons[i].WeaponPrefab == null) continue;
+
+                for (int j = 0; j < parentsDict[weapons[i].WeaponId].Count; j++)
+                    parentsDict[weapons[i].WeaponId][j].SetActive(false);
+            }
+        }
+
         if(mainModule.anim.GetInteger("Jumping") == 0)
             mainModule.TriggerValue = AnimState.Idle;
         
