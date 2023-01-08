@@ -37,4 +37,12 @@ public class MainModule : MonoBehaviour
             boss = this;
         anim = GetComponent<Animator>();
     }
+
+    private void Update()
+    {
+        if (boss != null && boss.gameObject == null || boss != null && !boss.gameObject.activeSelf)
+            boss = null;
+        else if (boss == null && isBoss && gameObject.activeSelf)
+            boss = this;
+    }
 }

@@ -50,6 +50,8 @@ public class CamManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        isBossAppear = MainModule.boss != null;
+
         ZoomCamera();
         if (isBossAppear)
             BossCamera();

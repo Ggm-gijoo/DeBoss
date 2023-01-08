@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class BossUIManager : MonoBehaviour
 {
     [SerializeField]private TextMeshProUGUI bossNameText;
-    [SerializeField]private Image bossHPBar;
+    [SerializeField]private Image[] bossHPBar;
     [SerializeField]private CanvasGroup bossUICanvas;
 
     private EnemySO bossSO;
@@ -46,6 +46,13 @@ public class BossUIManager : MonoBehaviour
     }
     public void BossHPBarUpdate()
     {
+        foreach (var bHp in bossHPBar)
+        {
+            float UiX = bHp.rectTransform.sizeDelta.x;
+            float UiY = bHp.rectTransform.sizeDelta.y;
 
+            bHp.rectTransform.sizeDelta = new Vector2(0f, UiY);
+            bHp.rectTransform.DOSizeDelta(new Vector2(UiX, UiY), 0.5f);
+        }
     }
 }
