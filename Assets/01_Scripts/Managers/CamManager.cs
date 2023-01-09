@@ -80,7 +80,7 @@ public class CamManager : MonoBehaviour
     }
     public void RotateCamera()
     {
-        CameraDistance = new Vector3(0f, 1.5f, -11.5f);
+        CameraDistance = new Vector3(0f, 2.25f, -5.5f);
 
         mouseX = Input.GetAxis("Mouse X");
 
