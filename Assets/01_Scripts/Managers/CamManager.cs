@@ -80,6 +80,8 @@ public class CamManager : MonoBehaviour
     }
     public void RotateCamera()
     {
+        CameraDistance = new Vector3(0f, 1.5f, -11.5f);
+
         mouseX = Input.GetAxis("Mouse X");
 
         rotationX += mouseX * rotateSpeed;
@@ -94,6 +96,8 @@ public class CamManager : MonoBehaviour
     {
         if (bossTransform == null)
             bossTransform = MainModule.boss.transform;
+
+        CameraDistance = new Vector3(0.55f, 1.5f, -5f);
 
         Transform test = targetTransformGameObj.transform;
         test.position = (bossTransform.position + playerTransform.position) / 2.0f;
