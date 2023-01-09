@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class HPModule : MonoBehaviour
 {
-    [Header("플레이어 HP")]
+    [Header("HP")]
     [Range(10, 300)]
     public float maxHp = 150f;
 
     private float nowHp;
     public float NowHp => nowHp;
 
-    private void Awake()
+    private EnemySO enemySO;
+    private MainModule mainModule;
+
+    private void Start()
     {
-        nowHp = maxHp;
+        mainModule = GetComponent<MainModule>();
+
+        if (MainModule.player == mainModule)
+            nowHp = maxHp;
+        else
+        {
+            enemySO = MainModule.boss.GetComponent<EnemyDefault>().enemySO;
+            nowHp = enemySO.Hp;
+        }
     }
 
     private void Update()
@@ -27,6 +38,7 @@ public class HPModule : MonoBehaviour
     public void Damage(float dmg)
     {
         nowHp -= dmg;
-        HPBarManager.Instance.GetDamage(dmg);
+
+        if(mainModule == MainModule.player) HPBarManager.Instance.GetDamage(dmg);
     }
 }

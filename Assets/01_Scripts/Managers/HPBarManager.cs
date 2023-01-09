@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HPBarManager : MonoBehaviour
-{
-    private static HPBarManager instance;
-
-    public static HPBarManager Instance => instance;
-
+public class HPBarManager : MonoSingleton<HPBarManager>
+{ 
     [SerializeField]
     TextMeshProUGUI hpText;
     [SerializeField]
@@ -17,14 +13,6 @@ public class HPBarManager : MonoBehaviour
 
     HPModule playerHp;
 
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        DontDestroyOnLoad(instance);
-    }
     private void Start()
     {
         playerHp = MainModule.player.GetComponent<HPModule>();

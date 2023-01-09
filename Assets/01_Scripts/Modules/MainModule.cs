@@ -40,7 +40,7 @@ public class MainModule : MonoBehaviour
 
     private void Update()
     {
-        if (boss != null && boss.gameObject == null || boss != null && !boss.gameObject.activeSelf)
+        if (boss != null && (boss.gameObject == null || !boss.gameObject.activeSelf || !boss.isBoss))
             boss = null;
         else if (boss == null && isBoss && gameObject.activeSelf)
             boss = this;

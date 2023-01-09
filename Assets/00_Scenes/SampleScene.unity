@@ -990,9 +990,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossNameText: {fileID: 305680902}
   bossHPBar:
-  - {fileID: 326383979}
   - {fileID: 1275301563}
-  - {fileID: 112199851}
+  - {fileID: 326383979}
+  - {fileID: 1810145117}
   bossUICanvas: {fileID: 1364518288}
 --- !u!114 &697139479
 MonoBehaviour:
@@ -3164,6 +3164,7 @@ GameObject:
   - component: {fileID: 1914609548}
   - component: {fileID: 1914609551}
   - component: {fileID: 1914609552}
+  - component: {fileID: 1914609553}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3344,6 +3345,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySO: {fileID: 11400000, guid: 59a145e174f610540849093f6fd1f2bc, type: 2}
+--- !u!114 &1914609553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914609542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6309936606295024eb6df0a71766912c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 150
 --- !u!1 &1934522052
 GameObject:
   m_ObjectHideFlags: 0

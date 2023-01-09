@@ -6,13 +6,16 @@ using DG.Tweening;
 using UnityEngine.UI;
 
 
-public class BossUIManager : MonoBehaviour
+public class BossUIManager : MonoSingleton<BossUIManager>
 {
     [SerializeField]private TextMeshProUGUI bossNameText;
     [SerializeField]private Image[] bossHPBar;
     [SerializeField]private CanvasGroup bossUICanvas;
 
     private EnemySO bossSO;
+    private HPModule hpModule;
+    private List<float> UiX = new List<float>();
+
     private void Start()
     {
         if (!IsBossAppear())
@@ -20,20 +23,24 @@ public class BossUIManager : MonoBehaviour
             bossUICanvas.gameObject.SetActive(false);
             return;
         }
+        hpModule = MainModule.boss.GetComponent<HPModule>();
         bossSO = MainModule.boss.GetComponent<EnemyDefault>().enemySO;
         BossNameUI();
     }
     private void Update()
     {
-        if(IsBossAppear() && bossUICanvas.alpha <= 0)
+        bossHPBar[0].fillAmount = hpModule.NowHp / bossSO.Hp;
+
+        if (IsBossAppear() && bossUICanvas.alpha <= 0)
         {
-            bossUICanvas.DOFade(1, 0.5f);
+            bossUICanvas.DOFade(1, 0.2f);
             BossNameUI();
             BossHPBarUpdate();
         }
         else if(!IsBossAppear() && bossUICanvas.alpha > 0)
         {
-            bossUICanvas.DOFade(0, 0.5f);
+            BossHPBarUpdate();
+            bossUICanvas.DOFade(0, 0.4f);
         }
     }
     public bool IsBossAppear()
@@ -46,13 +53,21 @@ public class BossUIManager : MonoBehaviour
     }
     public void BossHPBarUpdate()
     {
-        foreach (var bHp in bossHPBar)
-        {
-            float UiX = bHp.rectTransform.sizeDelta.x;
-            float UiY = bHp.rectTransform.sizeDelta.y;
 
-            bHp.rectTransform.sizeDelta = new Vector2(0f, UiY);
-            bHp.rectTransform.DOSizeDelta(new Vector2(UiX, UiY), 0.5f);
+        for (int i = 0; i < bossHPBar.Length; i++)
+        {
+            if(UiX != null && UiX.Count < bossHPBar.Length)
+                UiX.Add(bossHPBar[i].rectTransform.sizeDelta.x);
+
+            if (IsBossAppear())
+            {
+                bossHPBar[i].rectTransform.sizeDelta = new Vector2(0f, bossHPBar[i].rectTransform.sizeDelta.y);
+                bossHPBar[i].rectTransform.DOSizeDelta(new Vector2(UiX[i], bossHPBar[i].rectTransform.sizeDelta.y), 0.5f);
+            }
+            else
+            {
+                bossHPBar[i].rectTransform.DOSizeDelta(new Vector2(0f, bossHPBar[i].rectTransform.sizeDelta.y), 0.5f);
+            }
         }
     }
 }
