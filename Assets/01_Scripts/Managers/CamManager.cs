@@ -92,6 +92,9 @@ public class CamManager : MonoBehaviour
 
     public void BossCamera()
     {
+        if (bossTransform == null)
+            bossTransform = MainModule.boss.transform;
+
         Transform test = targetTransformGameObj.transform;
         test.position = (bossTransform.position + playerTransform.position) / 2.0f;
 

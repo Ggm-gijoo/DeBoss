@@ -20,7 +20,7 @@ public class BossUIManager : MonoSingleton<BossUIManager>
     {
         if (!IsBossAppear())
         {
-            bossUICanvas.gameObject.SetActive(false);
+            bossUICanvas.alpha = 0;
             return;
         }
         hpModule = MainModule.boss.GetComponent<HPModule>();
@@ -29,6 +29,15 @@ public class BossUIManager : MonoSingleton<BossUIManager>
     }
     private void Update()
     {
+        if (!IsBossAppear() && hpModule == null && bossSO == null) return;
+
+        if (IsBossAppear() && hpModule == null && bossSO == null)
+        {
+            hpModule = MainModule.boss.GetComponent<HPModule>();
+            bossSO = MainModule.boss.GetComponent<EnemyDefault>().enemySO;
+            BossNameUI();
+        }
+
         bossHPBar[0].fillAmount = hpModule.NowHp / bossSO.Hp;
 
         if (IsBossAppear() && bossUICanvas.alpha <= 0)
@@ -37,7 +46,7 @@ public class BossUIManager : MonoSingleton<BossUIManager>
             BossNameUI();
             BossHPBarUpdate();
         }
-        else if(!IsBossAppear() && bossUICanvas.alpha > 0)
+        else if(!IsBossAppear() && bossUICanvas.alpha >= 1)
         {
             BossHPBarUpdate();
             bossUICanvas.DOFade(0, 0.4f);
@@ -66,6 +75,7 @@ public class BossUIManager : MonoSingleton<BossUIManager>
             }
             else
             {
+                bossHPBar[i].rectTransform.sizeDelta = new Vector2(UiX[i], bossHPBar[i].rectTransform.sizeDelta.y);
                 bossHPBar[i].rectTransform.DOSizeDelta(new Vector2(0f, bossHPBar[i].rectTransform.sizeDelta.y), 0.5f);
             }
         }
