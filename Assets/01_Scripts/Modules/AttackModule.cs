@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AttackModule : MonoBehaviour
 {
     private float endDelay = 2f;
-    private NavMeshAgent agent;
+
     private WeaponModule weaponModule;
     private Coroutine attackCoroutine;
     private MainModule mainModule;
@@ -19,27 +19,9 @@ public class AttackModule : MonoBehaviour
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
         weaponModule = GetComponent<WeaponModule>();
         mainModule = GetComponent<MainModule>();
     }
-
-    public void Attack(Vector3 targetPos)
-    {
-        if (agent == null)
-        {
-            Attack();
-            return;
-        }
-        agent.SetDestination(targetPos);
-        if (attackCoroutine == null)
-        {
-            agent.isStopped = true;
-            agent.speed = 0;
-            attackCoroutine = StartCoroutine(AttackRepeat());
-        }
-    }
-
     public void Attack()
     {
         if (attackCoroutine == null)

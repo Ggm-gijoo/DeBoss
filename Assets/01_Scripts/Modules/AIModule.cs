@@ -47,7 +47,7 @@ public class AIModule : MonoBehaviour
 
     public void Attack()
     {
-        attackModule.Attack(player.position);
+
     }
 
     public void StopAttack()

@@ -13,8 +13,8 @@ public enum WeaponPos
 }
 public class WeaponModule : MonoBehaviour
 {
-    private static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
-    private static Dictionary<int, List<GameObject>> parentsDict = new Dictionary<int, List<GameObject>>();
+    public static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
+    public static Dictionary<int, List<GameObject>> parentsDict = new Dictionary<int, List<GameObject>>();
 
     private VisualEffectAsset[][] weaponVfx = new VisualEffectAsset[100][];
 
@@ -39,15 +39,6 @@ public class WeaponModule : MonoBehaviour
         SetNowWeapon();
     }
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            nowWeaponIdx = (nowWeaponIdx + 1) % weapons.Count;
-            SetNowWeapon();
-        }
-    }
     private static void Init()
     {
         weapons.Clear();
@@ -110,13 +101,11 @@ public class WeaponModule : MonoBehaviour
             }
         }
 
-        if(mainModule.anim.GetInteger("Jumping") == 0)
-            mainModule.TriggerValue = AnimState.Idle;
-        
+        if (mainModule.TriggerValue != AnimState.Dodge)
+            mainModule.anim.SetTrigger(_trigger);
         mainModule.attackMove = 0;
 
         mainModule.anim.SetInteger(_weapon, (int)nowWeapon.Type);
-        mainModule.anim.SetTrigger(_trigger);
         mainModule.anim.SetTrigger(_weaponChange);
     }
 

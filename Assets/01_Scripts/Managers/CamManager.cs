@@ -52,7 +52,8 @@ public class CamManager : MonoBehaviour
     {
         isBossAppear = MainModule.boss != null;
 
-        ZoomCamera();
+        if(Time.timeScale >= 0.5f)
+            ZoomCamera();
         if (isBossAppear)
             BossCamera();
         else
