@@ -16,7 +16,7 @@ public class WeaponModule : MonoBehaviour
     public static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
     public static Dictionary<int, List<GameObject>> parentsDict = new Dictionary<int, List<GameObject>>();
 
-    private VisualEffectAsset[][] weaponVfx = new VisualEffectAsset[100][];
+    public GameObject[][] weaponVfx = new GameObject[100][];
 
     [SerializeField] private Transform[] weaponTransform;
 
@@ -37,6 +37,11 @@ public class WeaponModule : MonoBehaviour
         Init();
         SetPool();
         SetNowWeapon();
+
+        for(int i = 0; i < weapons.Count; i++)
+        {
+            weaponVfx[i] = weapons[i].Vfxs;
+        }
     }
 
     private static void Init()
@@ -101,8 +106,8 @@ public class WeaponModule : MonoBehaviour
             }
         }
 
-        if (mainModule.TriggerValue != AnimState.Dodge)
-            mainModule.anim.SetTrigger(_trigger);
+        //if (mainModule.TriggerValue != AnimState.Dodge)
+        //    mainModule.anim.SetTrigger(_trigger);
         mainModule.attackMove = 0;
 
         mainModule.anim.SetInteger(_weapon, (int)nowWeapon.Type);

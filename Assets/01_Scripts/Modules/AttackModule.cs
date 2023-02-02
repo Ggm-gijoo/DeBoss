@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class AttackModule : MonoBehaviour
 {
@@ -51,7 +52,15 @@ public class AttackModule : MonoBehaviour
             mainModule.anim.SetTrigger(_trigger);
 
             yield return null;
+
             yield return new WaitForSecondsRealtime(0.5f);
+            GameObject vfx = null;
+
+            if (vfx != weaponModule.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1])
+                vfx = Instantiate(weaponModule.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1], transform);
+
+            vfx.GetComponent<VisualEffect>().Play();
+
             if (mainModule.attackMove == weaponModule.nowWeapon.AtkMoveCount)
             {
                 mainModule.isAct = false;

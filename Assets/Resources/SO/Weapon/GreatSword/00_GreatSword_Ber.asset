@@ -24,4 +24,7 @@ MonoBehaviour:
   pos: 2
   dmg: 275
   crit: 35
-  attackMoveCount: 1
+  attackMoveCount: 2
+  vfxs:
+  - {fileID: 364049225954590200, guid: e2f07da1b6e7c444493a9d41ca5b9303, type: 3}
+  - {fileID: 7050861075978713042, guid: f7514fab42d79714daf921c8d10b6ea7, type: 3}

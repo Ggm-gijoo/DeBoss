@@ -32,7 +32,7 @@ public class WeaponSO : ScriptableObject
     [Header("공격 애니메이션 개수")]
     [SerializeField] private int attackMoveCount = 3;
     [Header("공격 이펙트")]
-    [SerializeField] private VisualEffectAsset[] vfxs;
+    [SerializeField] private GameObject[] vfxs;
 
 
     public int WeaponId => weaponId;
@@ -44,7 +44,7 @@ public class WeaponSO : ScriptableObject
     public float Dmg => dmg;
     public float Crit => crit;
     public int AtkMoveCount => attackMoveCount;
-    public VisualEffectAsset[] Vfxs => vfxs;
+    public GameObject[] Vfxs => vfxs;
 
 
 }
