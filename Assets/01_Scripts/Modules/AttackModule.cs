@@ -60,6 +60,7 @@ public class AttackModule : MonoBehaviour
                 vfx = Instantiate(weaponModule.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1], transform);
 
             vfx.GetComponent<VisualEffect>().Play();
+            vfx.transform.SetParent(null);
 
             if (mainModule.attackMove == weaponModule.nowWeapon.AtkMoveCount)
             {

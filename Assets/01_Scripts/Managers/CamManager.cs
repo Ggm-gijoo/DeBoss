@@ -8,6 +8,9 @@ public class CamManager : MonoBehaviour
 
     [Header("카메라 거리")]
     [SerializeField] private Vector3 CameraDistance;
+    [Header("보스 등장시 카메라 거리")]
+    [SerializeField] private Vector3 BossCamDistance;
+
     [Header("카메라 줌인/줌아웃 감도")]
     [Range(1f, 20f)]
     [SerializeField] private float zoomSpeed = 10f;
@@ -81,8 +84,6 @@ public class CamManager : MonoBehaviour
     }
     public void RotateCamera()
     {
-        CameraDistance = new Vector3(0f, 2.25f, -5.5f);
-
         mouseX = Input.GetAxis("Mouse X");
 
         rotationX += mouseX * rotateSpeed;
@@ -98,13 +99,11 @@ public class CamManager : MonoBehaviour
         if (bossTransform == null)
             bossTransform = MainModule.boss.transform;
 
-        CameraDistance = new Vector3(0.55f, 1.5f, -5f);
-
         Transform test = targetTransformGameObj.transform;
         test.position = (bossTransform.position + playerTransform.position) / 2.0f;
 
         mainCam.transform.forward = Vector3.Slerp(mainCam.transform.forward,bossTransform.position - playerTransform.position,Time.deltaTime);
-        mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * CameraDistance;
+        mainCam.transform.position = playerTransform.position + mainCam.transform.rotation * BossCamDistance;
         mainCam.transform.LookAt(test);
     }
 
