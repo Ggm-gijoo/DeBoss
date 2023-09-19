@@ -86,7 +86,6 @@ public class MoveModule : MonoBehaviour
         mainModule.anim.SetBool(_moving, Mathf.Abs(h) + Mathf.Abs(v) > Mathf.Epsilon);
         mainModule.anim.SetFloat("Velocity Z", _moving);
 
-
         if (rigid.velocity.y < 0)
             rigid.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
     }

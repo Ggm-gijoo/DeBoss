@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 
 public class AttackModule : MonoBehaviour
 {
-    private float endDelay = 2f;
+    private float endDelay = 1f;
 
     private WeaponModule weaponModule;
     private Coroutine attackCoroutine;
@@ -51,16 +51,17 @@ public class AttackModule : MonoBehaviour
             mainModule.anim.SetInteger(_attack, mainModule.attackMove);
             mainModule.anim.SetTrigger(_trigger);
 
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
 
-            yield return new WaitForSecondsRealtime(0.5f);
-            GameObject vfx = null;
+            //GameObject vfx = null;
 
-            if (vfx != weaponModule.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1])
-                vfx = Instantiate(weaponModule.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1], transform);
+            //if (vfx != weaponModule?.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1])
+            //    vfx = Instantiate(weaponModule.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1], transform);
 
-            vfx.GetComponent<VisualEffect>().Play();
-            vfx.transform.SetParent(null);
+            //vfx?.GetComponent<VisualEffect>().Play();
+            //vfx.transform.SetParent(null);
+
+            yield return new WaitUntil(() => !mainModule.anim.GetCurrentAnimatorStateInfo(0).IsName($"Attack{mainModule.attackMove}"));
 
             if (mainModule.attackMove == weaponModule.nowWeapon.AtkMoveCount)
             {

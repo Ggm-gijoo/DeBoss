@@ -10,14 +10,14 @@ public class AIModule : MonoBehaviour
     [SerializeField] private float chaseRange = 10f;
 
     MoveModule moveModule;
-    AttackModule attackModule;
 
     Transform player;
+    EnemyDefault enemy;
 
     private void Start()
     {
+        enemy = GetComponent<EnemyDefault>();
         moveModule = GetComponent<MoveModule>();
-        attackModule = GetComponent<AttackModule>();
         player = MainModule.player.transform;
     }
     private void FixedUpdate()
@@ -52,6 +52,6 @@ public class AIModule : MonoBehaviour
 
     public void StopAttack()
     {
-        attackModule.StopAttack();
+
     }
 }
