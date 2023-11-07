@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class InputModule : MonoBehaviour
+public class InputModule : MonoSingleton<InputModule>
 {
     [SerializeField]private MoveModule moveModule;
     [SerializeField]private AttackModule attackModule;
 
+    public UnityEvent EndAttackEvent { get; private set; } = new UnityEvent();
 
     private void Awake()
     {
@@ -18,14 +20,13 @@ public class InputModule : MonoBehaviour
 
     private void FixedUpdate() //이동
     {
-        if (!MainModule.player.isAct && Time.timeScale >= 0.1f)
-        {
-            InputMove();
-        }
+        if (Time.timeScale < 0.1f) return;
+        InputMove();
     }
     private void Update() //즉각 반응해야하는 행동
     {
-        if (!MainModule.player.isAct && Time.timeScale >= 0.1f)
+        if (Time.timeScale < 0.1f) return;
+        if (!MainModule.player.IsAct)
         {
             InputDash();
             InputJump();
@@ -35,7 +36,7 @@ public class InputModule : MonoBehaviour
 
     public void InputDash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && MainModule.player.TriggerValue != AnimState.Jump)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
             moveModule.Dash();
     }
     public void InputMove()
@@ -43,6 +44,8 @@ public class InputModule : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
+        if (MainModule.player.IsAct)
+            h = v = 0;
         moveModule.MoveTo(h, v);
     }
 
@@ -57,12 +60,15 @@ public class InputModule : MonoBehaviour
 
     public void InputAttack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && MainModule.player.TriggerValue != AnimState.Dodge && MainModule.player.TriggerValue != AnimState.Jump)
         {
             MainModule.player.TriggerValue = AnimState.Attack;
             attackModule.Attack();
         }
         else if (Input.GetMouseButtonUp(0))
+        {
+            EndAttackEvent.Invoke();
             attackModule.StopAttack();
+        }
     }
 }

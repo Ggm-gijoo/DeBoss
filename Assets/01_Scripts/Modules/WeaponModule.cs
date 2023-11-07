@@ -11,12 +11,10 @@ public enum WeaponPos
     RightHand,
     AllHand
 }
-public class WeaponModule : MonoBehaviour
+public class WeaponModule : MonoSingleton<WeaponModule>
 {
     public static Dictionary<int, WeaponSO> weapons = new Dictionary<int, WeaponSO>();
     public static Dictionary<int, List<GameObject>> parentsDict = new Dictionary<int, List<GameObject>>();
-
-    public GameObject[][] weaponVfx = new GameObject[100][];
 
     [SerializeField] private Transform[] weaponTransform;
 
@@ -37,11 +35,6 @@ public class WeaponModule : MonoBehaviour
         Init();
         SetPool();
         SetNowWeapon();
-
-        for(int i = 0; i < weapons.Count; i++)
-        {
-            weaponVfx[i] = weapons[i].Vfxs;
-        }
     }
 
     private static void Init()

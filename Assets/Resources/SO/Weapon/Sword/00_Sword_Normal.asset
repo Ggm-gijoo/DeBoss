@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponId: 1
   weaponModel: {fileID: 2029620441608679860, guid: 8549eb183cb1d9a4cb8c1888b34422d1, type: 3}
-  weaponName: "\uD3C9\uBC94\uD55C \uAC80"
+  weaponName: "\uC591\uB0A0\uAC80"
   description: "\uB0A0\uC774 \uC11C\uC9C4 \uC54A\uC558\uC9C0\uB9CC \uC77C\uB2E8 \uD2BC\uD2BC\uD558\uB2E4.
     \uCD5C\uC18C\uD55C \uC801\uC744 \uBCA8 \uC218\uB294 \uC788\uB2E4."
   type: 1
   pos: 2
-  speed: 1
   dmg: 7
   crit: 10
   attackMoveCount: 3
+  vfxs: []

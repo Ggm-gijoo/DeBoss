@@ -20,7 +20,7 @@ public class MainModule : MonoBehaviour
 
     public bool isPlayer = false;
     public bool isBoss = false;
-    [HideInInspector] public bool isAct = false;
+    [HideInInspector] public bool IsAct = false;
 
     public Animator anim;
     private AnimState animstate = AnimState.Idle;

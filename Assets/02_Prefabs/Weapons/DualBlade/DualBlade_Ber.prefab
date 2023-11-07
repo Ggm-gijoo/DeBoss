@@ -78,6 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72ed0d0f11ffff43bf48fb66d98695e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  twoHanded: 0
+  weaponSO: {fileID: 11400000, guid: 182a13481d5cb894f82d938bf5cd764c, type: 2}
+  hitVfx: {fileID: 6713835014774498456, guid: a06228a097de64545959b23006e3e8c4, type: 3}
 --- !u!1 &8731436262983015729
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72ed0d0f11ffff43bf48fb66d98695e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  twoHanded: 1
+  weaponSO: {fileID: 11400000, guid: 182a13481d5cb894f82d938bf5cd764c, type: 2}
+  hitVfx: {fileID: 6713835014774498456, guid: a06228a097de64545959b23006e3e8c4, type: 3}
 --- !u!1001 &799187902263836149
 PrefabInstance:
   m_ObjectHideFlags: 0

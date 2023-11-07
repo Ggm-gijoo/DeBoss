@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54efbb722d7786f4db4abfae4730e830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  twoHanded: 0
+  weaponSO: {fileID: 11400000, guid: 19466aabd8d8261409df810face8e98c, type: 2}
+  hitVfx: {fileID: 6713835014774498456, guid: a06228a097de64545959b23006e3e8c4, type: 3}
 --- !u!1 &5543645044625200474
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,11 +69,15 @@ public class MoveModule : MonoBehaviour
                 mainModule.anim.SetTrigger(_trigger);
             }
         }
+
+        if(mainModule.IsAct)
+        {
+            mainModule.anim.SetBool(_moving, false);
+        }
     }
 
     public void MoveTo(float h, float v)
     {   
-
         Vector3 forward = Camera.main.transform.localRotation * Vector3.forward;
         forward.y = 0.0f;
 
@@ -103,20 +107,27 @@ public class MoveModule : MonoBehaviour
 
     public void Dash()
     {
-        if (!mainModule.isAct)
+        if (!mainModule.IsAct)
         {
-            mainModule.isAct = true;
-            characterTrail.OnTrail(0.3f);
+            mainModule.IsAct = true;
+
+            Vector3 originDir = new Vector3(rigid.velocity.x, 0, rigid.velocity.z).normalized;
 
             rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
+
+            if (originDir != Vector3.zero)
+                rigid.AddForce(originDir * 180, ForceMode.Impulse);
+            else
+                rigid.AddForce(transform.forward * 180, ForceMode.Impulse);
 
             mainModule.TriggerValue = AnimState.Dodge;
 
             mainModule.anim.SetTrigger(_trigger, () =>
             {
-                mainModule.isAct = false;
-            }, 0.4f);
+                mainModule.TriggerValue = AnimState.Idle;
+                mainModule.IsAct = false;
+            }, 0.2f);
         }
 
     }

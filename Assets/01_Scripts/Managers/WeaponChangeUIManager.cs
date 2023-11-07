@@ -14,6 +14,8 @@ public class WeaponChangeUIManager : MonoBehaviour
 
     private void Update()
     {
+        if (MainModule.player.IsAct) return;
+
         if (Input.GetKeyDown(KeyCode.Tab) && !flag && MainModule.player.TriggerValue != AnimState.Jump)
         {
             flag = true;

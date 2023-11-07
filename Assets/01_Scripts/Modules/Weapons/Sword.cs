@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    public override void Attack()
+    public override IEnumerator Attack()
     {
-
+        return base.Attack();
     }
 }

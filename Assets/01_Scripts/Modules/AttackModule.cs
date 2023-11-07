@@ -6,15 +6,9 @@ using UnityEngine.VFX;
 
 public class AttackModule : MonoBehaviour
 {
-    private float endDelay = 1f;
-
     private WeaponModule weaponModule;
     private Coroutine attackCoroutine;
     private MainModule mainModule;
-
-    private readonly int _attack = Animator.StringToHash("Action");
-    private readonly int _trigger = Animator.StringToHash("Trigger");
-    private readonly int _skill = Animator.StringToHash("Skill");
 
     private bool flag = false;
 
@@ -27,7 +21,8 @@ public class AttackModule : MonoBehaviour
     {
         if (attackCoroutine == null)
         {
-            mainModule.isAct = true;
+            mainModule.IsAct = true;
+            flag = true;
             attackCoroutine = StartCoroutine(AttackRepeat());
         }
     }
@@ -42,34 +37,18 @@ public class AttackModule : MonoBehaviour
 
     private IEnumerator AttackRepeat()
     {
-        flag = true;
         while (flag)
         {
-            mainModule.isAct = true;
-            mainModule.attackMove = mainModule.attackMove % weaponModule.nowWeapon.AtkMoveCount + 1;
-
-            mainModule.anim.SetInteger(_attack, mainModule.attackMove);
-            mainModule.anim.SetTrigger(_trigger);
-
-            yield return new WaitForSeconds(0.1f);
-
-            //GameObject vfx = null;
-
-            //if (vfx != weaponModule?.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1])
-            //    vfx = Instantiate(weaponModule.weaponVfx[weaponModule.nowWeaponIdx][mainModule.attackMove - 1], transform);
-
-            //vfx?.GetComponent<VisualEffect>().Play();
-            //vfx.transform.SetParent(null);
-
-            yield return new WaitUntil(() => !mainModule.anim.GetCurrentAnimatorStateInfo(0).IsName($"Attack{mainModule.attackMove}"));
-
-            if (mainModule.attackMove == weaponModule.nowWeapon.AtkMoveCount)
+            if(WeaponModule.weapons[weaponModule.nowWeaponIdx].WeaponPrefab == null)
             {
-                mainModule.isAct = false;
-                yield return new WaitForSeconds(endDelay);
+                flag = false;
+                attackCoroutine = null;
+                yield break;
             }
+            yield return StartCoroutine(WeaponModule.parentsDict[weaponModule.nowWeaponIdx][0].GetComponent<Weapon>().Attack());
         }
-        mainModule.isAct = false;
+        MainModule.player.TriggerValue = AnimState.Idle;
+        mainModule.IsAct = false;
         attackCoroutine = null;
     }
 }

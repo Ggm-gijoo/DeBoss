@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Achileus
   m_EditorClassIdentifier: 
   enemyIdx: 0
-  modifier: "\uC874\uB098 \uC874\uB098 \uC3C0"
-  enemyName: "\uBFE1\uBFE1\uBFE1\uBFE1\uBF55\uBF55\uBF55\uBF55\uC774\uB828"
+  modifier: "\uBAB0\uB77D\uD55C \uC601\uC6C5"
+  enemyName: "\uC544\uD0AC\uB808\uC6B0\uC2A4"
   hp: 5000
