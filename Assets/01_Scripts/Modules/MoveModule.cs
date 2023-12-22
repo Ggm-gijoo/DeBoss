@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class MoveModule : MonoBehaviour
 {
@@ -117,9 +118,9 @@ public class MoveModule : MonoBehaviour
             rigid.angularVelocity = Vector3.zero;
 
             if (originDir != Vector3.zero)
-                rigid.AddForce(originDir * 180, ForceMode.Impulse);
+                rigid.DOMove(transform.position + originDir * 10, 0.5f).SetEase(Ease.OutCubic);
             else
-                rigid.AddForce(transform.forward * 180, ForceMode.Impulse);
+                rigid.DOMove(transform.position + transform.forward * 10, 0.5f);
 
             mainModule.TriggerValue = AnimState.Dodge;
 

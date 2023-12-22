@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 00_Hand
   m_EditorClassIdentifier: 
   weaponId: 0
-  weaponModel: {fileID: 0}
+  weaponModel: {fileID: 6282516620047389478, guid: 876f2000a9f48154395d03abd6fabc17, type: 3}
   weaponName: "\uC190"
   description: "\uD0DC\uC5B4\uB0A0 \uB54C\uBD80\uD130 \uC9C0\uB2C8\uACE0 \uC788\uB358,
     \uC790\uC2E0\uC774 \uBBFF\uC744 \uC218 \uC788\uB294 \uC720\uC77C\uD55C \uBB34\uAE30"
   type: 0
-  pos: 0
+  pos: 2
   dmg: 3
   crit: 10
   attackMoveCount: 2

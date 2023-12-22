@@ -26,6 +26,7 @@ public class GreatSword : Weapon
 
         yield return new WaitForSeconds(0.2f);
         PlayVfx(0);
+        PlayHitVfx(mainModule.transform.position + mainModule.transform.forward * 2f + Vector3.up * 1.4f);
 
         yield return new WaitForSeconds(0.3f);
 
@@ -46,6 +47,7 @@ public class GreatSword : Weapon
         yield return new WaitForSeconds(0.2f);
 
         PlayVfx(1);
+        PlayHitVfx(mainModule.transform.position + mainModule.transform.forward * 2f + Vector3.up * 1.4f);
 
         yield return new WaitUntil(() => isAtkEnd);
     }

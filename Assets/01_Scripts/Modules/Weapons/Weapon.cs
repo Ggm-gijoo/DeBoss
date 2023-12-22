@@ -47,14 +47,16 @@ public abstract class Weapon : MonoBehaviour
     {
         mainModule.TriggerValue = AnimState.Attack;
         mainModule.attackMove = mainModule.attackMove % weaponSO.AtkMoveCount + 1;
+        isAtkEnd = false;
 
         mainModule.anim.SetInteger(_attack, mainModule.attackMove);
         mainModule.anim.SetTrigger(_trigger);
 
-        StartCoroutine(CheckAtkEnd());
+        Debug.Log(!mainModule.anim.GetCurrentAnimatorStateInfo(0).IsName($"Attack{mainModule.attackMove}"));
         CinemachineCameraShaking.Instance.CameraShake();
 
         yield return new WaitForSeconds(0.2f);
+        StartCoroutine(CheckAtkEnd());
 
         if (vfxs.Count >= mainModule.attackMove)
         {
@@ -62,7 +64,7 @@ public abstract class Weapon : MonoBehaviour
             PlayHitVfx(mainModule.transform.position + mainModule.transform.forward * 2f + Vector3.up * 1.4f);
         }
 
-        yield return new WaitUntil(()=>isAtkEnd);
+        yield return new WaitUntil(()=>isAtkEnd == true);
     }
 
     public void PlayVfx(int num)
@@ -91,10 +93,7 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual IEnumerator CheckAtkEnd()
     {
-        isAtkEnd = false;
-
         yield return new WaitUntil(() => !mainModule.anim.GetCurrentAnimatorStateInfo(0).IsName($"Attack{mainModule.attackMove}"));
-
         isAtkEnd = true;
     }
 }

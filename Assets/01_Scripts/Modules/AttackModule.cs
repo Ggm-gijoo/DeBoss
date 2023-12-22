@@ -39,12 +39,6 @@ public class AttackModule : MonoBehaviour
     {
         while (flag)
         {
-            if(WeaponModule.weapons[weaponModule.nowWeaponIdx].WeaponPrefab == null)
-            {
-                flag = false;
-                attackCoroutine = null;
-                yield break;
-            }
             yield return StartCoroutine(WeaponModule.parentsDict[weaponModule.nowWeaponIdx][0].GetComponent<Weapon>().Attack());
         }
         MainModule.player.TriggerValue = AnimState.Idle;
